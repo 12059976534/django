@@ -1,0 +1,47 @@
+{% extends 'base.html'%}
+
+{% block title %}login{% endblock %}
+
+
+{% block content %}
+<center>
+ <div class="col" style="margin-top: 100px;">
+    <div class="container mt-5">
+
+        <div class="card border-primary mb-3" style="max-width: 25rem;">
+            <div class="card-header">login here</div>
+            <div class="card-body text-primary">
+              
+                <form action="{% url 'login' %}" method="POST">
+                  {% csrf_token %}
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Username</label>
+                      <input type="text" name="user" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                      <small id="emailHelp" class="form-text text-muted">If you don't have an account, contact the app creator</small>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Password</label>
+                      <input type="password" name="pas" class="form-control mb-4" id="exampleInputPassword1">
+                    </div>
+
+                    {% if messages %}
+                      <ul class="alert alert-primary">
+                          {% for message in messages %}
+                          {% if 'inpalidpas' in message.tags %}
+                            <div{% if 'inpalidpas' in message.tags %} class="{{ message.tags }} text-danger"{% endif %}>{{ message }}</div>
+                          {% elif 'not_exis' in message.tags %}  
+                            <div{% if 'not_exis' in message.tags %} class="{{ message.tags }} text-danger"{% endif %}>{{ message }}</div>
+                          {% endif %}
+                          {% endfor %}
+                      </ul>
+                    {% endif %}
+                   
+                    <button type="submit" class="form-control mb-5 btn btn-primary">Submit</button>
+                  </form>
+                
+            </div>
+          </div>
+    </div>
+ </div>
+</center>
+{% endblock %}

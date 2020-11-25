@@ -1,0 +1,126 @@
+{% extends 'base.html'%}
+
+{% block title %}admin{% endblock%}
+
+{% block content %}
+
+ <div class="row mt-5" style="width: 100%;">
+     <div class="col-md-7">
+        <div class="card ml-3  mt-3">
+            <div class="card-header  ">
+              5 MATAKULIAH
+            </div>
+    
+            <div class=" mt-2 ml-1 mr-2 mb-2">
+            <center>
+                <table>
+                    <tr>
+                        <td class="border"><center>NO</center></td>
+                        <td class="border"><center>MATKUL</center></td>
+                        <td class="border"><center>UPDATE</center></td>
+                        <td class="border"><center>DELETE</center></td>
+                    </tr>
+       
+                    <tr>
+                       <td class="border"><center>1</center></td>
+                       <td class="border"><center>perancangan dan pengembagan prangkat lunak</center></td>
+                       <td class="border"><center><a href="">update</a></center></td>
+                       <td class="border"><center><a href="">delete</a></center></td>
+                    </tr>
+                </table>
+            </center>
+            
+            </div>
+    
+          </div>
+
+          <div class="card ml-3  mt-3">
+            <div class="card-header  ">
+              Daftar Users
+            </div>
+    
+            <div class=" mt-2 ml-1 mr-2 mb-2">
+            
+              
+                 {% for data in data %}
+                 
+                   <div class="alert alert-primary">{{data.username}}</div>
+                 
+                 {% endfor %}
+              
+            
+            
+            </div>
+    
+          </div>  
+     </div>
+
+     <div class="col-md-5">
+
+        <div class="card ml-3 mt-3 mb-4" style="max-width: 25rem;">
+            <div class="card-body">
+              <h5 class="card-title">Buat info</h5>
+
+              {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                      {% if 'insil' in message.tags %}
+                        <li{% if 'insil' in message.tags %} class="{{ message.tags }} text-success"{% endif %}> {{ message }} </li>
+                      {% endif %}  
+                    {% endfor %}
+                </ul>
+              {% endif %}
+
+              <form action="{% url 'info' %}" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Text here</label>
+                    <textarea class="form-control" name="info" id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary form-control">Submit</button>
+              </form>
+            </div>
+          </div>
+          
+          <div class="card ml-3 mb-2 " style="max-width: 25rem;">
+            <div class="card-body">
+              <h5 class="card-title">CREATE NEW USER</h5>
+              {% if messages %}
+                <ul class="alert alert-primary">
+                    {% for message in messages %}
+                    {% if 'regal' in message.tags %}
+                      <div{% if 'regal' in message.tags %} class="{{ message.tags }} text-danger"{% endif %}>{{ message }}</div>
+                    {% elif 'resil' in message.tags %}  
+                      <div{% if 'resil' in message.tags %} class="{{ message.tags }} text-success"{% endif %}>{{ message }}</div>
+                    {% elif 'ready' in message.tags %}  
+                      <div{% if 'ready' in message.tags %} class="{{ message.tags }} text-warning"{% endif %}>{{ message }}</div>  
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+              {% endif %}
+              
+              <form method="POST" action="{% url 'admin' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Username</label>
+                  <input type="text" name="user" placeholder="Examplewahyu anugrah" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  <small id="emailHelp" class="form-text text-muted">usahakan username sesuai nama</small>
+                </div>
+
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Password</label>
+                  <input type="password" name="pas" placeholder="Example@12" class="mb-4 form-control" id="exampleInputPassword1">
+                </div>
+
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Password palidations</label>
+                  <input type="password" name="pallid" placeholder="Example@12" class="mb-4 form-control" id="exampleInputPassword1">
+                </div>
+               
+                <button type="submit" class="form-control btn btn-primary">Submit</button>
+              </form>
+            </div>
+          </div>
+     </div>
+ </div>
+{% endblock %}

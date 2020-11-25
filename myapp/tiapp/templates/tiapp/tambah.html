@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row " style="max-width: 100%">
+
+    <div class="col-md-4">
+        
+    </div>
+
+    <div class="col-md" style="margin-top: 100px; ">
+        <div class="container ">
+    
+            <div class="card border-primary mb-3 ml-3" style="min-width: 300px; max-width: 350px;">
+                <div class="card-header">Daftarkan matakuliah</div>
+                <div class="card-body text-primary">
+                  
+                    <form>
+                        <div class="form-group">
+                          <label for="exampleInputEmail1">Matakuliah</label>
+                          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleInputPassword1">Dosen</label>
+                          <input type="password" class="form-control mb-4" id="exampleInputPassword1">
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleInputPassword1">Hari</label>
+                          <input type="password" class="form-control mb-4" id="exampleInputPassword1">
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleInputPassword1">Jam</label>
+                          <input type="password" class="form-control mb-4" id="exampleInputPassword1">
+                        </div>
+            
+                        <button type="submit" class="form-control mb-5 btn btn-primary">Submit</button>
+                      </form>
+                    
+                </div>
+              </div>
+           </div>
+    </div>
+    
+   
+</div>
+
+{% endblock %}

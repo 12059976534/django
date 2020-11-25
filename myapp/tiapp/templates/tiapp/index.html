@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+  
+    <div class="row mt-5" style=" min-height: 400px; width: 100%;">
+
+        <div class="col-md-8 mt-3 ">
+
+            <div class="card ml-3" style="min-width: 330px;">
+                <div class="card-header">
+                  Materi Pebahasan
+                </div>
+                <div class="card-body">
+                    <table class="table table-sm">
+                        <thead>
+                          <tr>
+                            <th scope="col">No</th>
+                            <th scope="col">Materi</th>
+                            <th scope="col">Hari</th>
+                            <th scope="col">Jam</th>
+                            <th scope="col">Details</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">1</th>
+                            <td>Mark suc zuberk</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                            <td>@mdo</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">2</th>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                            <td>@fat</td>
+                            <td>@fat</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">3</th>
+                            <td colspan="2">Larry the Bird</td>
+                            <td>@twitter</td>
+                            <td>@twitter</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                  </div>
+              </div>   
+
+        </div>
+    
+
+
+       <div class="col-md-4  mb-3" style="">
+       {% for dat in page %}  
+        <div class="card ml-3 mb-2 mt-3" style="min-width: 330px;">
+            <div class="card-header">
+              info dari: {{dat.user}}
+            </div>
+            <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                  <p class="text-primary">{{dat.content}}</p>
+                  <footer class="blockquote-footer">{{dat.date}}<cite title="Source Title"> di upload</cite></footer>
+                </blockquote>
+              </div>
+          </div>
+       {% endfor %}
+
+       <!-- paginate -->
+       
+       
+          
+       
+              
+              <div class="pagination card-body ml-5">
+                <span class="step-links">
+                  <div class="row">
+                    {% if page.has_previous %}
+                        <a class="nav-link border border-primary text-dark" href="?page=1" >&laquo; first</a>
+                        <a class="nav-link border border-primary text-dark" href="?page={{ page.previous_page_number }}">&laquo;</a>
+                    {% endif %}
+
+            
+                    <span class=" mt-2">
+                        {{ page.number }} of {{ page.paginator.num_pages }}.
+                    </span>
+            
+                    {% if page.has_next %}
+                        <a class="nav-link border border-primary text-dark" href="?page={{ page.next_page_number }}">&raquo;</a>
+                        <a class="nav-link border border-primary text-dark" href="?page={{ page.paginator.num_pages }}">last &raquo;</a>
+                    {% endif %}
+                  </div>
+                </span>
+              </div>
+                    
+
+            
+      
+       
+       
+
+       <!-- paginate -->
+       
+       
+       </div>
+
+    </div>
+
+
+
+
+{% endblock %}
